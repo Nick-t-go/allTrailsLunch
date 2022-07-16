@@ -13,7 +13,7 @@ const SearchHeader = ({
   const onInputChange = e => setSearchString(e.target.value);
 
   const debouncedCall = useCallback(
-    debounce((searchInput) => { findPlacesFromQuery(searchInput); }, 5000), [findPlacesFromQuery]
+    debounce((searchInput) => { findPlacesFromQuery(searchInput); }, 1500), [findPlacesFromQuery]
   );
 
   useEffect(() => {

@@ -1,0 +1,64 @@
+@import 'global_variables_mixins';
+
+
+#root{
+  background-color: #f3f6fb;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.app-container{
+  background-color: #f8f8f8;
+	display: flex;
+  flex-direction: column;
+	height: 574px;
+	max-width: 1024px;
+	width: 100%;
+  @include small-screen-only {
+		height: 100%;
+	}
+
+  .map-results-section {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    @include small-screen-only {
+    	flex-direction: column;
+    }
+  }
+
+  .show-button{
+    background-color: $green;
+    border: 0;
+    border-radius: 6px;
+    bottom: 5%;
+    color: #fff;
+    height: 40px;
+    position: fixed;
+    right: 50%;
+    transform: translateX(50%);
+    width: 90px;
+    z-index: 1000;
+    span{
+      align-items: center;
+      display: flex;
+      font-size: 16px;
+      justify-content: space-evenly;
+    }
+
+    @include large-screen-only {
+      display: none;
+    }
+  }
+}
+
+.hide{
+  @include small-screen-only {
+    display: none !important;
+  }  
+}

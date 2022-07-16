@@ -1,0 +1,14 @@
+$green: #4d8425;
+$border-color: #d3d3d3;
+
+@mixin small-screen-only {
+	@media (max-width: 740px) {
+		@content;
+	}
+}
+
+@mixin large-screen-only {
+	@media (min-width: 741px) {
+		@content;
+	}
+}

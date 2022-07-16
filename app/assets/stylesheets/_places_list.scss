@@ -1,0 +1,89 @@
+@import 'global_variables_mixins';
+
+
+.places-list{
+	box-sizing: border-box;
+	display: flex;
+  flex-direction: column;
+	min-width: 350px;
+  overflow-y: scroll;
+	padding: 24px 26px 0;
+  
+  .result-card{
+    background-color: #fff;
+    border: #d3d3d3 1px solid;
+    border-radius: 6px;
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: row;
+    height: 92px;
+    justify-content: space-between;
+    margin: 0 0 8px 0;
+    padding: 14px 16px;
+    width: 300px;
+    &.selected{
+      border: $green 2px solid;
+    }
+  }
+
+  .result-img{
+    flex-shrink: 0;
+    height: 64px;
+    object-fit: cover;
+    overflow: hidden;
+    width: 64px;
+  }
+
+  .info-container{
+    color: #c4c4c4;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: auto;
+    width: 170px;
+    h3{
+      color: #747474;
+      font-size: 16px;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .fa-solid, .fa-star-half-o{
+      color: #f3d14a;
+      font-size: 16px;
+    }
+  }
+
+  .stars-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px 0;
+  }
+
+  .description-container{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .heart-container{
+    .fa-heart-o{
+      color: #808080;
+    }
+
+    .fa-heart{
+      color: $green;
+    }
+  }
+
+  @include small-screen-only {
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+}

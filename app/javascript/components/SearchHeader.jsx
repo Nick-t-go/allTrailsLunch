@@ -53,6 +53,3 @@ SearchHeader.propTypes = {
 
 
 export default SearchHeader;
-
-// <span><input type="radio" value="high" name="gender" />Ratings High to Low</span>
-//             <span><input type="radio" value="low" name="gender" />Ratings Low to Hide</span>

@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap } from "@react-google-maps/api";
 import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
 
-import PlaceDescription from "./PlaceDescription";
+import CustomMarker from "./CustomMarker";
 
 const MapContainer = ({
   center, onBoundsChanged, setCurrentMap, searchResults, showMap, selectedLocation, setSelectedLocation
@@ -12,18 +12,19 @@ const MapContainer = ({
     setCurrentMap(map);
   }, []);
 
-  const onLoadMarker = (marker, id) => {
-    const customIcon = opts => Object.assign({
-      path: faLocationPin.icon[4],
-      fillColor: '#34495e',
-      fillOpacity: 1,
-      strokeColor: '#000',
-      strokeWeight: 1,
-      scale: 0.06,
-    }, opts);
+  const customIcon = opts => Object.assign({
+    path: faLocationPin.icon[4],
+    fillColor: '#34495e',
+    fillOpacity: 1,
+    strokeColor: '#000',
+    strokeWeight: 1,
+    scale: 0.06,
+  }, opts);
 
+
+  const setMarker = (marker, selected) => {
     marker.setIcon(customIcon({
-      fillColor: id === selectedLocation ? '#4d8425' : 'grey',
+      fillColor: selected ? '#4d8425' : 'grey',
       strokeColor: 'white'
     }));
   };
@@ -39,25 +40,18 @@ const MapContainer = ({
         onLoad={onLoad}
         options={{ disableDefaultUI: true }}
       >{searchResults.map(place => (
-        <Marker
-          position={place.geometry.location}
-          onLoad={marker => onLoadMarker(marker, place.place_id)}
-          onClick={() => setSelectedLocation(place.place_id)}
-          clickable
+        <CustomMarker
+          place={place}
+          selected={place.place_id === selectedLocation}
+          setMarker={setMarker}
+          setSelectedLocation={setSelectedLocation}
           key={place.place_id}
-        >
-          {place.place_id === selectedLocation
-            ? (
-              <InfoWindow position={place.geometry.location}>
-                <div className="info-window-container">
-                  <PlaceDescription place={place} />
-                </div>
-              </InfoWindow>
-            )
-            : null }
-        </Marker>
+        />
+
       ))}
       </GoogleMap>
+      }
+      }
     </div>
   );
 };

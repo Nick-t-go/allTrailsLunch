@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { GoogleMap, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
+
+import PlaceDescription from "./PlaceDescription";
 
 const MapContainer = ({
   center, onBoundsChanged, setCurrentMap, searchResults, showMap, selectedLocation, setSelectedLocation
@@ -36,14 +38,24 @@ const MapContainer = ({
         onBoundsChanged={onBoundsChanged}
         onLoad={onLoad}
         options={{ disableDefaultUI: true }}
-      >{searchResults.map(({ geometry, place_id: id }) => (
+      >{searchResults.map(place => (
         <Marker
-          position={geometry.location}
-          onLoad={marker => onLoadMarker(marker, id)}
-          onClick={() => setSelectedLocation(id)}
+          position={place.geometry.location}
+          onLoad={marker => onLoadMarker(marker, place.place_id)}
+          onClick={() => setSelectedLocation(place.place_id)}
           clickable
-          key={id}
-        />
+          key={place.place_id}
+        >
+          {place.place_id === selectedLocation
+            ? (
+              <InfoWindow position={place.geometry.location}>
+                <div className="info-window-container">
+                  <PlaceDescription place={place} />
+                </div>
+              </InfoWindow>
+            )
+            : null }
+        </Marker>
       ))}
       </GoogleMap>
     </div>

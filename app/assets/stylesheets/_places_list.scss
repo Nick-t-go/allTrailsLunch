@@ -26,51 +26,6 @@
     }
   }
 
-  .result-img{
-    flex-shrink: 0;
-    height: 64px;
-    object-fit: cover;
-    overflow: hidden;
-    width: 64px;
-  }
-
-  .info-container{
-    color: #c4c4c4;
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    justify-content: space-between;
-    margin-left: 10px;
-    margin-right: auto;
-    width: 170px;
-    h3{
-      color: #747474;
-      font-size: 16px;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .fa-solid, .fa-star-half-o{
-      color: #f3d14a;
-      font-size: 16px;
-    }
-  }
-
-  .stars-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 2px 0;
-  }
-
-  .description-container{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
   .heart-container{
     .fa-heart-o{
       color: #808080;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
+import PlaceDescription from './PlaceDescription';
+
 const PlacesList = ({
   searchResults, showPlaceList, selectedLocation, setSelectedLocation, sortValue
 }) => {
@@ -13,12 +15,6 @@ const PlacesList = ({
   useEffect(() => {
     localStorage.setItem("mapFavorites", JSON.stringify(favorites));
   }, [favorites]);
-
-  const determineStar = (rating, starNumber) => {
-    if (rating > starNumber) return 'fa-solid fa-star';
-    if (rating < starNumber && rating > starNumber - 1) return 'fa-star-half-o';
-    return 'fa-duotone fa-star';
-  };
 
   const handleLocationClick = (id) => {
     setSelectedLocation(id);
@@ -50,42 +46,26 @@ const PlacesList = ({
 
   return (
     <div className={`places-list ${!showPlaceList ? 'hide' : ''}`}>
-      {sortedSearchResults.map(({
-        place_id: id, photos, name, rating, price_level: priceLvl, vicinity, user_ratings_total: ratingTotal
-      }) => (
+      {sortedSearchResults.map(place => (
         <div
-          className={`result-card ${id === selectedLocation ? 'selected' : ''}`}
-          key={id}
-          onClick={() => handleLocationClick(id)}
-          onKeyDown={() => handleLocationClick(id)}
+          className={`result-card ${place.place_id === selectedLocation ? 'selected' : ''}`}
+          key={place.place_id}
+          onClick={() => handleLocationClick(place.place_id)}
+          onKeyDown={() => handleLocationClick(place.place_id)}
           tabIndex="0"
           role="button"
           aria-pressed="false"
         >
-          <img
-            className="result-img"
-            width="64"
-            height="64"
-            alt="result-place"
-            src={photos && photos[0] ? photos[0].getUrl() : 'https://picsum.photos/id/1/200/300'}
-          />
-          <div className="info-container">
-            <h3>{name}</h3>
-            <div className="stars-container">
-              {[1, 2, 3, 4, 5].map(num => <i className={`fa ${determineStar(rating, num)}`} key={num} />)}
-              {`(${ratingTotal})`}
-            </div>
-            <div className="description-container">{`${'$'.repeat(priceLvl)} • ${vicinity}`}</div>
-          </div>
+          <PlaceDescription place={place} />
           <div
             className="heart-container"
-            onClick={e => handleFavoriteCLick(e, id)}
-            onKeyDown={e => handleFavoriteCLick(e, id)}
+            onClick={e => handleFavoriteCLick(e, place.place_id)}
+            onKeyDown={e => handleFavoriteCLick(e, place.place_id)}
             tabIndex="0"
             role="button"
             aria-pressed="false"
           >
-            {favorites.includes(id) ? <i className="fa fa-solid fa-heart" /> : <i className="fa fa-heart-o" />}
+            {favorites.includes(place.place_id) ? <i className="fa fa-solid fa-heart" /> : <i className="fa fa-heart-o" />}
           </div>
         </div>
       ))}

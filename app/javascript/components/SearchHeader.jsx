@@ -37,7 +37,7 @@ const SearchHeader = ({
         </div>
         <div className="form-group search">
           <input type="text" className="search-input" placeholder="search" onChange={onInputChange} value={searchString} />
-          <button className="search-button" type="submit"><i className="fa fa-search" /></button>
+          <button className="search-button" type="submit" onClick={() => debouncedCall(searchString)}><i className="fa fa-search" /></button>
         </div>
       </div>
     </header>

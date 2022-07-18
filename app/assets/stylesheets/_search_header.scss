@@ -2,7 +2,7 @@
 
 .search-header {
   align-items: center;
-  background-color: #fff;
+  background-color: $white;
   box-shadow: 0 2px 2px 0 rgba(170,170,170,0.75);
   display: flex;
   min-height: 60px;
@@ -52,10 +52,10 @@
     background-color: $green;
     border: #d3d3d3 1px solid;
     border-radius: 6px;
-    color: #fff;
+    color: $white;
     padding: 5px 10px;
     &:disabled {
-      background-color: #fff;
+      background-color: $white;
       color: #aaa;
     }
   }

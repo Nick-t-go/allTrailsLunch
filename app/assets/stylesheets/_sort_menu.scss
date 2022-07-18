@@ -2,7 +2,7 @@
 
 
 .filter-menu{
-	background: #fff;
+	background: $white;
 	border: #d3d3d3 1px solid;
 	border-radius: 6px;
 	box-sizing: border-box; 
@@ -17,7 +17,7 @@
 	width: 200px;
 
 	button{
-		background: #fff;
+		background: $white;
 		border: 0;
 		color: $green;
 		margin: auto 0 0 auto;
@@ -86,7 +86,7 @@
 	.container .checkmark:after {
 	  -ms-transform: rotate(45deg);
 	  -webkit-transform: rotate(45deg);
-	  border: solid #fff;
+	  border: solid $white;
 	  border-width: 0 2px 2px 0;
 	  height: 5px;
     left: 6px;

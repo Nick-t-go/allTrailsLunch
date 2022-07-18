@@ -1,5 +1,6 @@
 $green: #4d8425;
 $border-color: #d3d3d3;
+$white: #fff;
 
 @mixin small-screen-only {
 	@media (max-width: 740px) {

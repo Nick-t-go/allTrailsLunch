@@ -27,7 +27,7 @@ const CustomMarker = ({
     >
       {selected
         ? (
-          <InfoWindow position={place.geometry.location}>
+          <InfoWindow position={place.geometry.location} options={{ disableAutoPan: true }}>
             <div className="info-window-container">
               <PlaceDescription place={place} />
             </div>

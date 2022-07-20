@@ -12,6 +12,15 @@ const PlaceDescription = ({ place }) => {
     return 'fa-star-o';
   };
 
+  function getPhoto() {
+    if (photos && photos[0]) {
+      return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${photos[0].photo_reference}&key=${process.env.GOOGLE_API_KEY}&maxheight=100&maxwidth=100`;
+    }
+    return 'https://picsum.photos/id/1/200/300';
+  }
+
+  const photoSrc = getPhoto();
+
   return (
     <div className="place-description">
       <img
@@ -19,7 +28,7 @@ const PlaceDescription = ({ place }) => {
         width="64"
         height="64"
         alt="result-place"
-        src={photos && photos[0] ? photos[0].getUrl() : 'https://picsum.photos/id/1/200/300'}
+        src={photoSrc}
       />
       <div className="info-container">
         <h3>{name}</h3>

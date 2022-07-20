@@ -1,26 +1,13 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import debounce from 'lodash.debounce';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import SortMenu from './SortMenu';
 import AllTrailsLogo from '../assets/AllTrailsLogo';
 
 const SearchHeader = ({
-  findPlacesFromQuery, searchResultsAvailable, sortValue, setSortValue
+  searchString, onSearchInputChange, searchResultsAvailable, sortValue, setSortValue, getPlaces
 }) => {
-  const [searchString, setSearchString] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const onInputChange = e => setSearchString(e.target.value);
-
-  const debouncedCall = useCallback(
-    debounce((searchInput) => { findPlacesFromQuery(searchInput); }, 1500), [findPlacesFromQuery]
-  );
-
-  useEffect(() => {
-    if (searchString) {
-      debouncedCall(searchString);
-    }
-  }, [searchString, findPlacesFromQuery]);
 
   const handleShowMenu = () => setShowMenu(!showMenu);
 
@@ -36,8 +23,8 @@ const SearchHeader = ({
           {showMenu ? <SortMenu setSortValue={setSortValue} sortValue={sortValue} setShowMenu={setShowMenu} /> : null }
         </div>
         <div className="form-group search">
-          <input type="text" className="search-input" placeholder="search" onChange={onInputChange} value={searchString} />
-          <button className="search-button" type="submit" onClick={() => debouncedCall(searchString)}><i className="fa fa-search" /></button>
+          <input type="text" className="search-input" placeholder="search" onChange={onSearchInputChange} value={searchString} />
+          <button className="search-button" type="submit" onClick={() => getPlaces(searchString)}><i className="fa fa-search" /></button>
         </div>
       </div>
     </header>
@@ -45,10 +32,12 @@ const SearchHeader = ({
 };
 
 SearchHeader.propTypes = {
-  findPlacesFromQuery: PropTypes.func,
   searchResultsAvailable: PropTypes.bool,
   sortValue: PropTypes.string,
-  setSortValue: PropTypes.func
+  setSortValue: PropTypes.func,
+  onSearchInputChange: PropTypes.func,
+  searchString: PropTypes.string,
+  getPlaces: PropTypes.func,
 };
 
 

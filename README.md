@@ -2,8 +2,8 @@
 
 
 * Ruby version
-
-    -3.1.2
+   
+   -3.1.2
 
 * Steps to get up and running
 
@@ -15,6 +15,7 @@
     
 
 * Note
+=======
 
     -Add .env file with single variable called GOOGLE_API_KEY set to Google Maps/Places API key
 
